@@ -1,5 +1,3 @@
-# app/services/messaging_service.py
-
 from app.persistence.unit_of_work import UnitOfWork
 from app.model.messages.model import Messages
 from .exceptions import ValidationError, NotFound

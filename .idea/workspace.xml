@@ -1,53 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="dda70e5c-5eb7-43c3-a419-bace0b446e4b" name="Changes" comment="now work">
-      <change afterPath="$PROJECT_DIR$/app/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/controller/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/controller/auth_controller.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/controller/call_center_controller.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/controller/messaging_controller.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/core/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/core/config.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/db.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/model/revoked_tokens/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/model/revoked_tokens/model.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/persistence/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/persistence/db.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/persistence/exceptions.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/persistence/repositories/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/persistence/repositories/base.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/persistence/repositories/call_center.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/persistence/repositories/client.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/persistence/repositories/messages.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/persistence/repositories/revoked_tokens.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/persistence/unit_of_work.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/rag/chunking.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/rag/config.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/rag/data/.gitkeep" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/rag/index.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/rag/ingestion.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/rag/llm.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/rag/loaders.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/rag/memory_store.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/rag/pipeline.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/schemas/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/schemas/auth.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/schemas/message.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/security/current_actor.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/security/jwt.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/service/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/service/auth_service.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/service/conversation_service.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/service/exceptions.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/service/messaging_service.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/utils/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/utils/security.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/test_call_center_repository.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/test_client_repository.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/test_messages_repository.py" afterDir="false" />
+    <list default="true" id="dda70e5c-5eb7-43c3-a419-bace0b446e4b" name="Changes" comment="now work final">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Licenta.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/copilot.data.migration.agent.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/copilot.data.migration.ask.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/copilot.data.migration.ask2agent.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/copilot.data.migration.edit.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/5a7131af-e3a3-4a51-b154-9d2cedc343c2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/5a7131af-e3a3-4a51-b154-9d2cedc343c2/storage_v2/_src_/database/FastCallDB.-E5bFA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/5a7131af-e3a3-4a51-b154-9d2cedc343c2/storage_v2/_src_/database/FastCallDB.-E5bFA/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/5a7131af-e3a3-4a51-b154-9d2cedc343c2/storage_v2/_src_/database/FastCallDB.-E5bFA/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/5a7131af-e3a3-4a51-b154-9d2cedc343c2/storage_v2/_src_/database/FastCallDB.-E5bFA/schema/public.abK9xQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/data_source_mapping.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/db-forest-config.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controller/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/controller/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controller/auth_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/controller/auth_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controller/call_center_controller.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/model/call_centers/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/model/call_centers/model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/model/client/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/model/client/model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/model/revoked_tokens/__init.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/persistence/db.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/persistence/db.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/persistence/exceptions.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/persistence/exceptions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/persistence/repositories/base.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/persistence/repositories/base.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/persistence/repositories/call_center.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/persistence/repositories/call_center.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/persistence/repositories/client.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/persistence/repositories/client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/persistence/repositories/messages.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/persistence/repositories/messages.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/persistence/unit_of_work.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/persistence/unit_of_work.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/rag/chunking.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/rag/chunking.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/rag/data/cc_1/bm25.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/rag/data/cc_1/bm25.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/rag/data/cc_1/chunks.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/rag/data/cc_1/chunks.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/rag/data/cc_1/faiss.index" beforeDir="false" afterPath="$PROJECT_DIR$/app/rag/data/cc_1/faiss.index" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/rag/index.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/rag/index.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/rag/ingestion.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/rag/ingestion.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/rag/llm.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/rag/llm.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/rag/memory_store.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/rag/memory_store.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/rag/pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/rag/pipeline.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/service/auth_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/service/auth_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/service/conversation_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/service/conversation_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/service/messaging_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/service/messaging_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/utils/security.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/security.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +64,13 @@
     <persistenceIdMap>
       <entry key="_D:/Licenta" value="38wr5T7bOxITck4n6Ws99wBiMUE" />
     </persistenceIdMap>
+  </component>
+  <component name="CopilotUserSelectedModel">
+    <selectedModels>
+      <entry key="edit-panel" value="GPT-5 mini" />
+      <entry key="chat-panel" value="GPT-5 mini" />
+      <entry key="agent-panel" value="GPT-5 mini" />
+    </selectedModels>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -86,6 +99,10 @@
     &quot;accountId&quot;: &quot;49e43b2e-30dd-418c-a554-c547433d2ca0&quot;
   }
 }</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/app/rag/ingestion.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/test_pdf_upload.py" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
 }</component>
@@ -94,43 +111,62 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python tests.Python tests for tests.test_call_centers_repository.test_add_and_get_call_center.executor": "Run",
-    "Python tests.pytest for test_enhanced_rag.test_enhanced_interaction.executor": "Run",
-    "Python tests.tests run.executor": "Run",
-    "Python.FastAPI (uvicorn).executor": "Run",
-    "Python.conftest.executor": "Run",
-    "Python.ingestion.executor": "Run",
-    "Python.main.executor": "Run",
-    "Python.test.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "ai.playground.ignore.import.keys.banner.in.settings": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "D:/Licenta/app/rag/data/cc_1/docs",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python tests.Python tests for tests.test_call_centers_repository.test_add_and_get_call_center.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for test_enhanced_rag.test_enhanced_interaction.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.tests run.executor&quot;: &quot;Run&quot;,
+    &quot;Python.FastAPI (uvicorn).executor&quot;: &quot;Run&quot;,
+    &quot;Python.conftest.executor&quot;: &quot;Run&quot;,
+    &quot;Python.ingestion.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test_api.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test_enum.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test_frontend_data.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test_register.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;ai.playground.ignore.import.keys.banner.in.settings&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Licenta/app/rag/data/cc_1/docs&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
     ]
   }
-}]]></component>
+}</component>
+  <component name="PyConsoleOptionsProvider">
+    <option name="myPythonConsoleState">
+      <console-settings sdk-home="$PROJECT_DIR$/.venv/Scripts/python.exe">
+        <option name="sdk">
+          <Sdk />
+        </option>
+        <option name="mySdkHome" value="$PROJECT_DIR$/.venv/Scripts/python.exe" />
+        <option name="mySdk">
+          <Sdk />
+        </option>
+      </console-settings>
+    </option>
+  </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Licenta\app\rag\data\cc_1\docs" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\Licenta\app\rag\data\cc_1" />
+      <recent name="D:\Licenta\app\model\enums" />
       <recent name="D:\Licenta\tests" />
+      <recent name="D:\Licenta\app\rag\data\cc_1" />
       <recent name="D:\Licenta\app\rag" />
     </key>
   </component>
@@ -147,9 +183,8 @@
         <env name=" PYTHONPATH" value="." />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="SDK_NAME" value="Python 3.14 (Licenta)" />
       <option name="WORKING_DIRECTORY" value="D:\Licenta" />
-      <option name="IS_MODULE_SDK" value="false" />
+      <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
@@ -163,21 +198,104 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for tests.test_call_centers_repository.test_add_and_get_call_center" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
-      <module name="Licenta" />
+    <configuration name="test_api" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="SDK_NAME" value="Python 3.14 (Licenta)" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="RUN_TOOL" value="" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests.test_call_centers_repository.test_add_and_get_call_center&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/test_api.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test_enum" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="Python 3.14 (Licenta)" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="RUN_TOOL" value="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/test_enum.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test_frontend_data" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="Python 3.14 (Licenta)" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="RUN_TOOL" value="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/test_frontend_data.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test_register" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="Python 3.14 (Licenta)" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="RUN_TOOL" value="" />
+      <option name="SCRIPT_NAME" value="D:\Licenta\tests\test_register.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
     <configuration name="pytest for tests.test_enhanced_rag.test_enhanced_interaction" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
@@ -221,22 +339,28 @@
     </configuration>
     <list>
       <item itemvalue="Python.FastAPI (uvicorn)" />
+      <item itemvalue="Python.test_api" />
+      <item itemvalue="Python.test_enum" />
+      <item itemvalue="Python.test_frontend_data" />
+      <item itemvalue="Python.test_register" />
       <item itemvalue="Python tests.tests run" />
       <item itemvalue="Python tests.pytest for tests.test_enhanced_rag.test_enhanced_interaction" />
-      <item itemvalue="Python tests.Python tests for tests.test_call_centers_repository.test_add_and_get_call_center" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.test_enum" />
+        <item itemvalue="Python.test_frontend_data" />
+        <item itemvalue="Python.test_register" />
+        <item itemvalue="Python.test_api" />
         <item itemvalue="Python tests.pytest for tests.test_enhanced_rag.test_enhanced_interaction" />
-        <item itemvalue="Python tests.Python tests for tests.test_call_centers_repository.test_add_and_get_call_center" />
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-PY-253.30387.127" />
-        <option value="bundled-python-sdk-3944b0c99280-6d6dccd035ac-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-253.30387.127" />
+        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-PY-253.30387.173" />
+        <option value="bundled-python-sdk-4762d8aabb82-6d6dccd035ac-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-253.30387.173" />
       </set>
     </attachedChunks>
   </component>
@@ -258,7 +382,22 @@
       <workItem from="1771172960842" duration="10348000" />
       <workItem from="1771245023976" duration="630000" />
       <workItem from="1771247232132" duration="5570000" />
-      <workItem from="1771266254193" duration="4813000" />
+      <workItem from="1771266254193" duration="6797000" />
+      <workItem from="1771489546830" duration="142000" />
+      <workItem from="1771587520041" duration="8950000" />
+      <workItem from="1771596913682" duration="146000" />
+      <workItem from="1771597145820" duration="1310000" />
+      <workItem from="1771692145655" duration="108000" />
+      <workItem from="1771759111404" duration="4000" />
+      <workItem from="1771759409992" duration="213000" />
+      <workItem from="1771759746972" duration="1274000" />
+      <workItem from="1771761147606" duration="38000" />
+      <workItem from="1771765283091" duration="93000" />
+      <workItem from="1771765392561" duration="873000" />
+      <workItem from="1771767891605" duration="131000" />
+      <workItem from="1771768034548" duration="1136000" />
+      <workItem from="1771877014679" duration="193000" />
+      <workItem from="1772034393945" duration="2278000" />
     </task>
     <task id="LOCAL-00001" summary="final login work + tests">
       <option name="closed" value="true" />
@@ -268,7 +407,15 @@
       <option name="project" value="LOCAL" />
       <updated>1771172256417</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="now work final">
+      <option name="closed" value="true" />
+      <created>1771273205238</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1771273205238</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -287,17 +434,22 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="final login work + tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="final login work + tests" />
+    <MESSAGE value="now work final" />
+    <option name="LAST_COMMIT_MESSAGE" value="now work final" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Licenta$pytest_for_test_enhanced_rag_test_enhanced_interaction.coverage" NAME="pytest for test_enhanced_rag.test_enhanced_interaction Coverage Results" MODIFIED="1771248086601" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Licenta$test.coverage" NAME="test Coverage Results" MODIFIED="1769771958349" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Licenta$.coverage" NAME=" Coverage Results" MODIFIED="1769771179878" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Licenta$FastAPI__uvicorn_.coverage" NAME="FastAPI (uvicorn) Coverage Results" MODIFIED="1771270229147" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="D:\Licenta" />
+    <SUITE FILE_PATH="coverage/Licenta$FastAPI__uvicorn_.coverage" NAME="FastAPI (uvicorn) Coverage Results" MODIFIED="1771877015448" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="D:\Licenta" />
     <SUITE FILE_PATH="coverage/Licenta$main.coverage" NAME="main Coverage Results" MODIFIED="1771166903869" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app" />
     <SUITE FILE_PATH="coverage/Licenta$tests_run.coverage" NAME="tests run Coverage Results" MODIFIED="1771248652400" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Licenta$ingestion.coverage" NAME="ingestion Coverage Results" MODIFIED="1771270199380" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app/rag" />
     <SUITE FILE_PATH="coverage/Licenta$conftest.coverage" NAME="conftest Coverage Results" MODIFIED="1769771255997" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/Licenta$pytest_for_test_enhanced_rag_test_enhanced_interaction.coverage" NAME="pytest for test_enhanced_rag.test_enhanced_interaction Coverage Results" MODIFIED="1771248086601" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Licenta$test_api.coverage" NAME="test_api Coverage Results" MODIFIED="1771590786356" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/Licenta$test_register.coverage" NAME="test_register Coverage Results" MODIFIED="1771594312956" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Licenta$test_enum.coverage" NAME="test_enum Coverage Results" MODIFIED="1771594892225" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/Licenta$ingestion.coverage" NAME="ingestion Coverage Results" MODIFIED="1771270199380" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app/rag" />
+    <SUITE FILE_PATH="coverage/Licenta$test_frontend_data.coverage" NAME="test_frontend_data Coverage Results" MODIFIED="1771594806664" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>

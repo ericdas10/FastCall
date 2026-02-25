@@ -18,7 +18,6 @@ class SearchResult:
     chunk_id: int
 
 def _tokenize(text: str) -> List[str]:
-    # simple, fast tokenizer
     text = text.lower()
     text = re.sub(r"[^a-z0-9\s]+", " ", text)
     return [t for t in text.split() if t]
@@ -116,7 +115,6 @@ class RagIndex:
         self._faiss = index
         self._chunks = chunks
 
-        # BM25 store
         self._bm25_tokens = [_tokenize(t) for t in texts]
         self._bm25 = _BM25(self._bm25_tokens)
 
@@ -142,7 +140,6 @@ class RagIndex:
             self._bm25_tokens = obj.get("tokens", [])
             self._bm25 = _BM25(self._bm25_tokens)
         else:
-            # backward compatibility
             texts = [c["text"] for c in (self._chunks or [])]
             self._bm25_tokens = [_tokenize(t) for t in texts]
             self._bm25 = _BM25(self._bm25_tokens)
@@ -177,22 +174,17 @@ class RagIndex:
         if self._faiss is None or self._chunks is None or self._bm25 is None:
             self.load()
 
-        # 1. Fetch more candidates than needed for better re-ranking
         dense = self.search_dense(query, top_k=max(top_k * 4, 20))
 
-        # 2. Get BM25 scores
         qtok = _tokenize(query)
         bm25_scores = self._bm25.scores(qtok) if self._bm25 else np.zeros(len(self._chunks), dtype=np.float32)
 
-        # 3. ROBUST NORMALIZATION: Prevent division by zero
         if bm25_scores.size and bm25_scores.max() > 0:
             bm_min, bm_max = float(bm25_scores.min()), float(bm25_scores.max())
-            # Use max(..., 1e-9) to ensure the denominator is never zero
             bm_norm = (bm25_scores - bm_min) / (bm_max - bm_min + 1e-9)
         else:
             bm_norm = bm25_scores
 
-        # 4. Dense normalization over retrieved candidates
         if dense:
             dvals = np.array([r.score for r in dense], dtype=np.float32)
             dmin, dmax = float(dvals.min()), float(dvals.max())
@@ -200,11 +192,9 @@ class RagIndex:
         else:
             dmin, dmax, denom = 0.0, 1.0, 1.0
 
-        # 5. Merging Logic
         seen = set()
         merged: List[Tuple[float, int]] = []
 
-        # Process dense candidates first
         for r in dense:
             idx = r.chunk_id
             if idx in seen:
@@ -214,23 +204,18 @@ class RagIndex:
             d_norm = (r.score - dmin) / denom
             b_norm_val = float(bm_norm[idx]) if idx < len(bm_norm) else 0.0
 
-            # Weighted average
             combined_score = (alpha * d_norm) + ((1 - alpha) * b_norm_val)
             merged.append((combined_score, idx))
 
-        # 6. Include top BM25 candidates that weren't in the dense results
         if len(self._chunks) > 0:
-            # Sort all BM25 scores descending and take the top N
             top_b_indices = np.argsort(-bm_norm)[: max(top_k * 4, 20)]
             for idx in top_b_indices.tolist():
                 if idx in seen:
                     continue
                 seen.add(idx)
-                # For BM25-only results, we assume d_norm is 0
                 b_val = float(bm_norm[idx])
                 merged.append(((1 - alpha) * b_val, idx))
 
-        # 7. Final Sort and Trim
         merged.sort(key=lambda x: x[0], reverse=True)
         merged = merged[:top_k]
 

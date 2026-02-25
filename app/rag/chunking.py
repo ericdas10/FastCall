@@ -15,7 +15,6 @@ def chunk_text(text: str, chunk_size=1200, overlap=200):
     if buf:
         joined.append(buf)
 
-    # add overlap using sliding window over joined chunks
     out = []
     for c in joined:
         if not out:

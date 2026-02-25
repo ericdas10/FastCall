@@ -1,10 +1,9 @@
-# app/persistence/repositories/base.py
 from typing import Generic, TypeVar, Type, Iterable, Optional
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import IntegrityError
 from app.persistence.exceptions import UniqueConstraintViolation
 
-T = TypeVar("T")  # SQLAlchemy model type
+T = TypeVar("T")
 
 class BaseRepository(Generic[T]):
     def __init__(self, session: Session, model: Type[T]):

@@ -1,4 +1,3 @@
-# app/persistence/repositories/messages.py
 from typing import Protocol, Optional, List
 from sqlalchemy.orm import Session
 from app.model.messages.model import Messages

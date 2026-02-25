@@ -55,6 +55,18 @@ def login(dto: LoginIn, uow: UnitOfWork = Depends(get_uow)):
     except ValidationError as e:
         raise HTTPException(status_code=400, detail=str(e))
 
+@router.get("/call-centers")
+def get_call_centers(uow: UnitOfWork = Depends(get_uow)):
+    """Get all call centers for client registration"""
+    call_centers = uow.call_centers.list_all()
+    return [
+        {
+            "id": cc.call_center_id,
+            "name": cc.name
+        }
+        for cc in call_centers
+    ]
+
 @router.post("/logout", status_code=204)
 def logout(uow: UnitOfWork = Depends(get_uow)):
     """

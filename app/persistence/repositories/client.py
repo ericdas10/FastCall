@@ -1,4 +1,3 @@
-# app/persistence/repositories/client.py
 from typing import Protocol, Optional, List
 from sqlalchemy.orm import Session
 from app.model.client.model import Client

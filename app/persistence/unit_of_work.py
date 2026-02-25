@@ -1,4 +1,3 @@
-# app/persistence/unit_of_work.py
 from typing import Generator
 from sqlalchemy.orm import Session
 from fastapi import Depends
@@ -40,14 +39,11 @@ class UnitOfWork:
             finally:
                 self.session.close()
 
-# FastAPI dependency to provide a UoW per request
 def get_uow() -> Generator[UnitOfWork, None, None]:
     session = create_session()
     try:
         uow = UnitOfWork(session)
         yield uow
-        # if no exceptions, commit at exit of dependency? choose pattern:
-        # we commit explicitly in services/controllers or rely on context manager.
     finally:
         try:
             session.close()

@@ -1,5 +1,3 @@
-# app/services/auth_service.py
-
 from dataclasses import dataclass
 from typing import Literal, Optional
 import re
@@ -28,8 +26,6 @@ class AuthService:
 
     def __init__(self, uow: UnitOfWork):
         self.uow = uow
-
-    # ---------- Registration ----------
 
     def register_call_center(self, *, name, username, password, email, domain, country, number):
 
@@ -106,8 +102,6 @@ class AuthService:
         self.uow.commit()
 
         return client
-
-    # ---------- Login ----------
 
     def login(self, *, username_or_email, password):
 

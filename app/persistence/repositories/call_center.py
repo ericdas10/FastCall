@@ -1,4 +1,3 @@
-# app/persistence/repositories/call_centers.py
 from typing import Protocol, Optional, List
 from sqlalchemy.orm import Session
 from app.model.call_centers.model import CallCenters

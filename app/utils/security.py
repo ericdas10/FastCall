@@ -1,8 +1,5 @@
-# app/utils/security.py
-
 from passlib.context import CryptContext
 
-# Configure hashing algorithm
 pwd_context = CryptContext(
     schemes=["bcrypt"],
     deprecated="auto"

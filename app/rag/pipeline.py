@@ -40,13 +40,10 @@ class RagPipeline:
         idx = self.ensure_index(call_center_id=call_center_id)
         state = self.cache.get_session(call_center_id, session_id)
 
-        # 1) Update memory with the user turn
         state.add_turn("user", question)
 
-        # 2) Rewrite query using conversation context (reduces “follow-up question” failures)
         standalone_query = self._rewrite_query(question=question, state=state)
 
-        # 3) Retrieval (cached)
         cached = self.cache.retrieval_get(call_center_id, standalone_query)
         if cached:
             results = cached["results"]
@@ -59,7 +56,6 @@ class RagPipeline:
             state.add_turn("assistant", resp)
             return resp
 
-        # 4) Build context (keep it tight: top N chunks; too much context increases hallucinations)
         results = results[: rag_settings.top_k]
 
         context_blocks = []
@@ -67,7 +63,6 @@ class RagPipeline:
             context_blocks.append(f"[chunk_id={r.chunk_id} source={r.source}]\n{r.text}")
         context = "\n\n---\n\n".join(context_blocks)
 
-        # 5) Answer gating + response in one JSON output
         llm_json = self._grounded_answer(question=question, standalone_query=standalone_query, state=state, context=context)
 
         answer = (llm_json.get("answer") or "").strip()
@@ -75,13 +70,11 @@ class RagPipeline:
         follow_up = llm_json.get("follow_up_question")
 
         if (not answerable) or (not answer) or (answer == rag_settings.fallback_message):
-            # Prefer 1 clarifying question instead of making things up
             resp = follow_up.strip() if isinstance(follow_up, str) and follow_up.strip() else FALLBACK_MESSAGE
             state.add_turn("assistant", resp)
             self._maybe_update_summary(state)
             return resp
 
-        # 6) Store assistant turn + periodically update summary
         state.add_turn("assistant", answer)
         self._maybe_update_summary(state)
 
@@ -141,16 +134,13 @@ class RagPipeline:
             """
         raw = self.llm.generate(prompt=prompt).strip()
         try:
-            # Add a check to see if 'raw' contains triple backticks and strip them
             clean_raw = raw.replace("```json", "").replace("```", "").strip()
             return json.loads(clean_raw)
         except Exception:
-            # Log the error here so you can see why it failed
             print(f"LLM JSON failure: {raw}")
             return {"answerable": False, "answer": "", "follow_up_question": rag_settings.fallback_message}
 
     def _maybe_update_summary(self, state) -> None:
-        # Update summary every ~8 turns to “evolve” memory without ballooning tokens
         if len(state.turns) % 8 != 0:
             return
 

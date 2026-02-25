@@ -13,7 +13,7 @@ class CallCenters(Base):
 
     name = Column(String(100), nullable=False)
     username = Column(String(100), nullable=False)
-    password = Column(String(100), nullable=False)  # va fi hash în practică
+    password = Column(String(100), nullable=False)
     email = Column(String(100), nullable=False)
 
     domain = Column(

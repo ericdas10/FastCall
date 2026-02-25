@@ -1,4 +1,3 @@
-# app/persistence/exceptions.py
 class PersistenceError(Exception):
     """Generic persistence error (wrap DB errors)."""
 

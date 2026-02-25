@@ -83,11 +83,9 @@ class RagCache:
 
     def _evict_expired(self):
         now = time()
-        # sessions
         for k in list(self._sessions.keys()):
             if now - self._sessions[k].last_access_ts > self.ttl_seconds:
                 self._sessions.pop(k, None)
-        # retrieval
         for k in list(self._retrieval.keys()):
             if now - self._retrieval[k]["ts"] > self.ttl_seconds:
                 self._retrieval.pop(k, None)
@@ -95,7 +93,6 @@ class RagCache:
     def _cap_sessions(self):
         if len(self._sessions) <= self.max_sessions:
             return
-        # evict LRU-ish
         items = sorted(self._sessions.items(), key=lambda kv: kv[1].last_access_ts)
         for k, _ in items[: max(1, len(items) - self.max_sessions)]:
             self._sessions.pop(k, None)

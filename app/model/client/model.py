@@ -20,7 +20,7 @@ class Client(Base):
     first_name = Column(String(100), nullable=False)
     last_name = Column(String(100), nullable=False)
     username = Column(String(100), nullable=False)
-    password = Column(String(100), nullable=False)  # va fi hash în practică
+    password = Column(String(100), nullable=False)
     email = Column(String(100), nullable=False)
 
     country = Column(

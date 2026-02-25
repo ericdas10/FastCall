@@ -1,4 +1,3 @@
-# app/rag/llm.py
 import requests
 from app.rag.config import rag_settings
 
