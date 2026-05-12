@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, Text
 from sqlalchemy.orm import relationship
 from sqlalchemy.types import Enum as SAEnum
 
@@ -27,5 +27,15 @@ class CallCenters(Base):
 
     number = Column(String(100), nullable=False)
 
+    # Free-form description (used by future features, e.g. routing/RAG hints)
+    description = Column(Text, nullable=True)
+
+    # Filesystem path to the knowledge base assets for this call center
+    knowledge_base_path = Column(String(500), nullable=True)
+
+    # Connection URI for the call center's own DB (optional)
+    database_uri = Column(String(500), nullable=True)
+
     # relationships
     clients = relationship("Client", back_populates="call_center", cascade="all, delete-orphan")
+    tickets = relationship("Ticket", back_populates="call_center", cascade="all, delete-orphan")

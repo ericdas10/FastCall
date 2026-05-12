@@ -1,23 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import { callCenterAPI, messagingAPI } from '../../services/api';
-import { 
-  UsersIcon, 
-  ChatBubbleLeftRightIcon, 
+import { callCenterAPI } from '../../services/api';
+import {
+  UsersIcon,
   DocumentArrowUpIcon,
   ArrowRightOnRectangleIcon,
-  UserIcon
+  UserIcon,
+  CheckCircleIcon,
+  XCircleIcon,
+  ChartBarIcon,
 } from '@heroicons/react/24/outline';
 
 const CallCenterDashboard = () => {
-  const [users, setUsers] = useState([]);
-  const [selectedUser, setSelectedUser] = useState(null);
-  const [conversation, setConversation] = useState([]);
+  const [dashboard, setDashboard] = useState({ clients: [], totals: { success: 0, failure: 0, total: 0 } });
   const [loading, setLoading] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [activeTab, setActiveTab] = useState('users');
-  
+
   const { user, logout } = useAuth();
   const navigate = useNavigate();
 
@@ -26,36 +26,21 @@ const CallCenterDashboard = () => {
       navigate('/login');
       return;
     }
-    fetchUsers();
+    fetchDashboard();
   }, [user, navigate]);
 
-  useEffect(() => {
-    if (selectedUser) {
-      fetchConversation(selectedUser.id);
-    }
-  }, [selectedUser]);
-
-  const fetchUsers = async () => {
+  const fetchDashboard = async () => {
     try {
       setLoading(true);
-      const response = await callCenterAPI.getUsers();
-      console.log('Users response:', response);
-      setUsers(response.users || []);
+      const response = await callCenterAPI.getDashboard();
+      setDashboard({
+        clients: response?.clients || [],
+        totals: response?.totals || { success: 0, failure: 0, total: 0 },
+      });
     } catch (error) {
-      console.error('Failed to fetch users:', error);
+      console.error('Failed to fetch dashboard:', error);
     } finally {
       setLoading(false);
-    }
-  };
-
-  const fetchConversation = async (userId) => {
-    try {
-      const response = await callCenterAPI.getConversation(userId);
-      console.log('Conversation response:', response);
-      setConversation(response || []);
-    } catch (error) {
-      console.error('Failed to fetch conversation:', error);
-      setConversation([]);
     }
   };
 
@@ -164,87 +149,88 @@ const CallCenterDashboard = () => {
 
           {/* Tab Content */}
           {activeTab === 'users' && (
-            <div className="flex-1 flex space-x-6">
-              {/* Users List */}
-              <div className="w-1/3 border-r border-secondary-200 pr-6">
-                <h2 className="text-lg font-semibold text-secondary-800 mb-4">Users</h2>
-                {loading ? (
-                  <div className="flex items-center justify-center h-64">
-                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-600"></div>
+            <div className="flex-1 flex flex-col overflow-hidden">
+              {/* Totals */}
+              <div className="grid grid-cols-3 gap-4 mb-6">
+                <div className="rounded-xl border border-secondary-200 bg-white p-4 flex items-center space-x-3">
+                  <ChartBarIcon className="h-8 w-8 text-primary-600" />
+                  <div>
+                    <p className="text-sm text-secondary-500">Total tickets</p>
+                    <p className="text-2xl font-bold text-secondary-800">{dashboard.totals.total}</p>
                   </div>
-                ) : users.length === 0 ? (
-                  <div className="text-center text-secondary-500 mt-8">
-                    <UserIcon className="h-12 w-12 mx-auto mb-4 text-secondary-300" />
-                    <p>No users found</p>
+                </div>
+                <div className="rounded-xl border border-green-200 bg-green-50 p-4 flex items-center space-x-3">
+                  <CheckCircleIcon className="h-8 w-8 text-green-600" />
+                  <div>
+                    <p className="text-sm text-green-700">Successful</p>
+                    <p className="text-2xl font-bold text-green-800">{dashboard.totals.success}</p>
                   </div>
-                ) : (
-                  <div className="space-y-2 max-h-96 overflow-y-auto">
-                    {users.map((userItem) => (
-                      <button
-                        key={userItem.id}
-                        onClick={() => setSelectedUser(userItem)}
-                        className={`w-full text-left p-3 rounded-lg transition-all duration-200 ${
-                          selectedUser?.id === userItem.id
-                            ? 'bg-primary-100 border border-primary-300'
-                            : 'bg-white hover:bg-secondary-50 border border-secondary-200'
-                        }`}
-                      >
-                        <div className="flex items-center space-x-3">
-                          <div className="w-10 h-10 bg-primary-600 rounded-full flex items-center justify-center text-white font-semibold">
-                            {userItem.name.charAt(0).toUpperCase()}
-                          </div>
-                          <div className="flex-1">
-                            <p className="font-medium text-secondary-800">{userItem.name}</p>
-                            <p className="text-sm text-secondary-500">{userItem.email}</p>
-                          </div>
-                        </div>
-                      </button>
-                    ))}
+                </div>
+                <div className="rounded-xl border border-red-200 bg-red-50 p-4 flex items-center space-x-3">
+                  <XCircleIcon className="h-8 w-8 text-red-600" />
+                  <div>
+                    <p className="text-sm text-red-700">Failed</p>
+                    <p className="text-2xl font-bold text-red-800">{dashboard.totals.failure}</p>
                   </div>
-                )}
+                </div>
               </div>
 
-              {/* Conversation View */}
-              <div className="flex-1 flex flex-col">
-                {selectedUser ? (
-                  <>
-                    <div className="mb-4">
-                      <h3 className="text-lg font-semibold text-secondary-800">
-                        Conversation with {selectedUser.name}
-                      </h3>
-                      <p className="text-sm text-secondary-500">{selectedUser.email}</p>
-                    </div>
-                    <div className="flex-1 overflow-y-auto space-y-4">
-                      {conversation.length === 0 ? (
-                        <div className="text-center text-secondary-500 mt-8">
-                          <ChatBubbleLeftRightIcon className="h-16 w-16 mx-auto mb-4 text-secondary-300" />
-                          <p>No conversation yet</p>
-                        </div>
-                      ) : (
-                        conversation.map((message, index) => (
-                          <div
-                            key={index}
-                            className={`flex ${message.sender_type === 'user' ? 'justify-end' : 'justify-start'}`}
-                          >
-                            <div className={`max-w-xs lg:max-w-md ${message.sender_type === 'user' ? 'order-2' : 'order-1'}`}>
-                              <div className={`${message.sender_type === 'user' ? 'chat-bubble-user' : 'chat-bubble-ai'}`}>
-                                <p className="text-sm">{message.content}</p>
+              <h2 className="text-lg font-semibold text-secondary-800 mb-3">Users</h2>
+
+              {loading ? (
+                <div className="flex items-center justify-center h-64">
+                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-600"></div>
+                </div>
+              ) : dashboard.clients.length === 0 ? (
+                <div className="text-center text-secondary-500 mt-8">
+                  <UserIcon className="h-12 w-12 mx-auto mb-4 text-secondary-300" />
+                  <p>No users found</p>
+                </div>
+              ) : (
+                <div className="overflow-y-auto">
+                  <table className="w-full text-left">
+                    <thead className="text-xs uppercase text-secondary-500 border-b border-secondary-200">
+                      <tr>
+                        <th className="py-2 pr-4">User</th>
+                        <th className="py-2 pr-4">Email</th>
+                        <th className="py-2 pr-4 text-center">Successful</th>
+                        <th className="py-2 pr-4 text-center">Failed</th>
+                        <th className="py-2 pr-4 text-center">Total</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {dashboard.clients.map((c) => (
+                        <tr key={c.client_id} className="border-b border-secondary-100">
+                          <td className="py-3 pr-4">
+                            <div className="flex items-center space-x-3">
+                              <div className="w-9 h-9 bg-primary-600 rounded-full flex items-center justify-center text-white font-semibold">
+                                {(c.first_name || '?').charAt(0).toUpperCase()}
+                              </div>
+                              <div className="font-medium text-secondary-800">
+                                {c.first_name} {c.last_name}
                               </div>
                             </div>
-                          </div>
-                        ))
-                      )}
-                    </div>
-                  </>
-                ) : (
-                  <div className="flex-1 flex items-center justify-center">
-                    <div className="text-center text-secondary-500">
-                      <UsersIcon className="h-16 w-16 mx-auto mb-4 text-secondary-300" />
-                      <p className="text-lg">Select a user to view conversation</p>
-                    </div>
-                  </div>
-                )}
-              </div>
+                          </td>
+                          <td className="py-3 pr-4 text-sm text-secondary-600">{c.email}</td>
+                          <td className="py-3 pr-4 text-center">
+                            <span className="inline-flex items-center px-2 py-1 rounded-full bg-green-100 text-green-800 text-sm font-semibold">
+                              {c.success_count}
+                            </span>
+                          </td>
+                          <td className="py-3 pr-4 text-center">
+                            <span className="inline-flex items-center px-2 py-1 rounded-full bg-red-100 text-red-800 text-sm font-semibold">
+                              {c.failure_count}
+                            </span>
+                          </td>
+                          <td className="py-3 pr-4 text-center font-semibold text-secondary-800">
+                            {c.total_count}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
             </div>
           )}
 

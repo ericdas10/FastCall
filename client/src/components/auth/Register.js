@@ -15,6 +15,9 @@ const Register = () => {
     domain: 'technology',
     country: 'RO',
     number: '+4000000000',
+    description: '',
+    knowledge_base_path: '',
+    database_uri: '',
   });
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -96,6 +99,9 @@ const Register = () => {
       domain: formData.domain,
       country: formData.country,
       number: formData.number,
+      description: formData.description,
+      knowledge_base_path: formData.knowledge_base_path,
+      database_uri: formData.database_uri,
     };
 
     if (userType === 'client') {
@@ -303,6 +309,50 @@ const Register = () => {
                   className="input-field"
                   placeholder="Enter phone number"
                   required
+                />
+              </div>
+              <div>
+                <label htmlFor="description" className="block text-sm font-medium text-secondary-700 mb-2">
+                  Description
+                </label>
+                <textarea
+                  id="description"
+                  name="description"
+                  value={formData.description}
+                  onChange={handleChange}
+                  className="input-field"
+                  placeholder="Tell us about this call center..."
+                  rows={4}
+                />
+              </div>
+
+              <div>
+                <label htmlFor="knowledge_base_path" className="block text-sm font-medium text-secondary-700 mb-2">
+                  Knowledge base path
+                </label>
+                <input
+                  type="text"
+                  id="knowledge_base_path"
+                  name="knowledge_base_path"
+                  value={formData.knowledge_base_path}
+                  onChange={handleChange}
+                  className="input-field"
+                  placeholder="e.g. /data/cc_42/docs"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="database_uri" className="block text-sm font-medium text-secondary-700 mb-2">
+                  Database URI
+                </label>
+                <input
+                  type="text"
+                  id="database_uri"
+                  name="database_uri"
+                  value={formData.database_uri}
+                  onChange={handleChange}
+                  className="input-field"
+                  placeholder="postgresql://user:pass@host:5432/db"
                 />
               </div>
             </>

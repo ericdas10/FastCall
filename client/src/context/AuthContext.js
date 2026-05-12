@@ -77,16 +77,25 @@ export const AuthProvider = ({ children }) => {
     dispatch({ type: 'LOGIN_START' });
     try {
       const response = await authAPI.login(credentials);
+
+      // Server may ask the user to pick a call center (same identifier maps
+      // to several call-center accounts). Surface that to the caller without
+      // logging in.
+      if (response && response.kind === 'select_call_center') {
+        dispatch({ type: 'LOGIN_FAILURE', payload: null });
+        return response;
+      }
+
       localStorage.setItem('token', response.access_token);
-      
+
       const user = {
-        id: 1,
+        id: response.actor_id,
         name: credentials.username,
         username: credentials.username,
-        user_type: credentials.user_type,
-        call_center_id: 1
+        user_type: response.actor_type,
+        call_center_id: response.call_center_id ?? null,
       };
-      
+
       localStorage.setItem('user', JSON.stringify(user));
       dispatch({
         type: 'LOGIN_SUCCESS',

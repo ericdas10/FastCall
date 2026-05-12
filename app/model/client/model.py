@@ -33,3 +33,4 @@ class Client(Base):
     # relationships
     call_center = relationship("CallCenters", back_populates="clients")
     messages = relationship("Messages", back_populates="client", cascade="all, delete-orphan")
+    tickets = relationship("Ticket", back_populates="client", cascade="all, delete-orphan")

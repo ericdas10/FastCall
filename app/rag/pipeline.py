@@ -36,11 +36,17 @@ class RagPipeline:
 
         return idx
 
-    def answer(self, *, call_center_id: int, session_id: str, question: str) -> str:
+    def answer(self, *, call_center_id: int, session_id: str, question: str) -> dict:
+        """
+        Returns dict: { "answer": str, "conversation_finished": bool }.
+        """
         idx = self.ensure_index(call_center_id=call_center_id)
         state = self.cache.get_session(call_center_id, session_id)
 
         state.add_turn("user", question)
+
+        # Heuristic user-side close intent
+        user_close = self._user_signals_close(question)
 
         standalone_query = self._rewrite_query(question=question, state=state)
 
@@ -54,7 +60,7 @@ class RagPipeline:
         if not results:
             resp = FALLBACK_MESSAGE
             state.add_turn("assistant", resp)
-            return resp
+            return {"answer": resp, "conversation_finished": user_close}
 
         results = results[: rag_settings.top_k]
 
@@ -68,17 +74,39 @@ class RagPipeline:
         answer = (llm_json.get("answer") or "").strip()
         answerable = bool(llm_json.get("answerable"))
         follow_up = llm_json.get("follow_up_question")
+        model_finished = bool(llm_json.get("conversation_finished"))
 
         if (not answerable) or (not answer) or (answer == rag_settings.fallback_message):
             resp = follow_up.strip() if isinstance(follow_up, str) and follow_up.strip() else FALLBACK_MESSAGE
             state.add_turn("assistant", resp)
             self._maybe_update_summary(state)
-            return resp
+            return {"answer": resp, "conversation_finished": user_close}
 
         state.add_turn("assistant", answer)
         self._maybe_update_summary(state)
 
-        return answer
+        return {"answer": answer, "conversation_finished": user_close or model_finished}
+
+    @staticmethod
+    def _user_signals_close(text: str) -> bool:
+        t = (text or "").strip().lower()
+        if not t:
+            return False
+        keywords = [
+            "that's all", "thats all", "that is all", "no more questions",
+            "we're done", "we are done", "i'm done", "im done", "thank you, bye",
+            "goodbye", "bye bye", "end conversation", "close conversation",
+            "nothing else", "no thanks", "that will be all",
+            "asta e tot", "am terminat", "la revedere", "multumesc, pa",
+        ]
+        return any(k in t for k in keywords)
+
+    def get_state(self, call_center_id: int, session_id: str):
+        return self.cache.get_session(call_center_id, session_id)
+
+    def reset_session(self, call_center_id: int, session_id: str) -> None:
+        key = self.cache._session_key(call_center_id, session_id)
+        self.cache._sessions.pop(key, None)
 
     def _rewrite_query(self, *, question: str, state) -> str:
         prompt = f"""
@@ -116,7 +144,8 @@ class RagPipeline:
             - If not answerable, ask exactly ONE concise clarifying question that would unlock the answer.
             - Keep the answer short, human, and action-oriented.
             - Do not mention "context", "chunks", "retrieval", or internal system details.
-            - Output MUST be valid JSON with keys: answerable (boolean), answer (string), follow_up_question (string).
+            - Detect if the conversation appears finished (user goal resolved, user said goodbye, no further questions). Set conversation_finished accordingly.
+            - Output MUST be valid JSON with keys: answerable (boolean), answer (string), follow_up_question (string), conversation_finished (boolean).
             
             Conversation summary:
             {state.summary or "(none)"}
@@ -138,7 +167,7 @@ class RagPipeline:
             return json.loads(clean_raw)
         except Exception:
             print(f"LLM JSON failure: {raw}")
-            return {"answerable": False, "answer": "", "follow_up_question": rag_settings.fallback_message}
+            return {"answerable": False, "answer": "", "follow_up_question": rag_settings.fallback_message, "conversation_finished": False}
 
     def _maybe_update_summary(self, state) -> None:
         if len(state.turns) % 8 != 0:
@@ -163,3 +192,14 @@ class RagPipeline:
         summ = self.llm.generate(prompt=prompt).strip()
         if summ:
             state.summary = summ
+
+
+_rag_singleton: "RagPipeline | None" = None
+
+
+def get_rag_pipeline() -> "RagPipeline":
+    """Process-wide singleton so in-memory conversation state persists across requests."""
+    global _rag_singleton
+    if _rag_singleton is None:
+        _rag_singleton = RagPipeline()
+    return _rag_singleton

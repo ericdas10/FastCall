@@ -43,7 +43,8 @@ export const authAPI = {
   login: async (credentials) => {
     const response = await api.post('/auth/login', {
       username_or_email: credentials.username,
-      password: credentials.password
+      password: credentials.password,
+      call_center_id: credentials.call_center_id ?? null,
     });
     return response.data;
   },
@@ -60,7 +61,10 @@ export const authAPI = {
         email: userData.email,
         domain: userData.domain,
         country: userData.country,
-        number: userData.number
+        number: userData.number,
+        description: userData.description || null,
+        knowledge_base_path: userData.knowledge_base_path || null,
+        database_uri: userData.database_uri || null,
       };
       console.log('Call center registration request:', requestData);
       
@@ -96,41 +100,50 @@ export const authAPI = {
   }
 };
 
-export const messagingAPI = {
-  sendMessage: async (message) => {
-    const response = await api.post('/messages', {
-      text: message.message
-    });
+export const conversationAPI = {
+  create: async () => {
+    const response = await api.post('/conversations');
     return response.data;
   },
 
-  getConversation: async (userId) => {
-    // Use the new client conversation endpoint
-    const response = await api.get('/messages/me/conversation');
+  listOpen: async () => {
+    const response = await api.get('/conversations/open');
     return response.data;
-  }
+  },
+
+  get: async (conversationId) => {
+    const response = await api.get(`/conversations/${conversationId}`);
+    return response.data;
+  },
+
+  sendMessage: async (conversationId, text) => {
+    const response = await api.post(`/conversations/${conversationId}/messages`, { text });
+    return response.data; // { answer, conversation_finished }
+  },
+
+  close: async (conversationId, success) => {
+    const response = await api.post(`/conversations/${conversationId}/close`, { success });
+    return response.data; // { ticket_id, status, closed_at }
+  },
+};
+
+export const ticketsAPI = {
+  listMine: async () => {
+    const response = await api.get('/tickets/me');
+    return response.data;
+  },
+  getMine: async (ticketId) => {
+    const response = await api.get(`/tickets/me/${ticketId}`);
+    return response.data;
+  },
 };
 
 export const callCenterAPI = {
-  getUsers: async (callCenterId) => {
-    const response = await api.get(`/call-centers/me/clients`);
-    // Transform the response to match frontend expectations
-    return {
-      users: response.data.map(client => ({
-        id: client.client_id,
-        name: `${client.first_name} ${client.last_name}`,
-        email: client.email,
-        username: client.username
-      }))
-    };
+  getDashboard: async () => {
+    const response = await api.get('/call-centers/me/dashboard');
+    return response.data; // { clients: [...], totals: {...} }
   },
-  
-  getConversation: async (userId) => {
-    const response = await api.get(`/call-centers/me/clients/${userId}/messages`);
-    console.log('Raw conversation response:', response.data);
-    return response.data;
-  },
-  
+
   uploadPDF: async (formData) => {
     const response = await api.post('/call-center/upload-pdf', formData, {
       headers: {

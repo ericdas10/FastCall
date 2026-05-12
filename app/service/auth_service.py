@@ -27,7 +27,10 @@ class AuthService:
     def __init__(self, uow: UnitOfWork):
         self.uow = uow
 
-    def register_call_center(self, *, name, username, password, email, domain, country, number):
+    def register_call_center(
+        self, *, name, username, password, email, domain, country, number,
+        description=None, knowledge_base_path=None, database_uri=None,
+    ):
 
         password = password.strip()
         if len(password.encode("utf-8")) > 72:
@@ -58,6 +61,9 @@ class AuthService:
             domain=domain,
             country=country,
             number=number.strip(),
+            description=(description.strip() if isinstance(description, str) and description.strip() else None),
+            knowledge_base_path=(knowledge_base_path.strip() if isinstance(knowledge_base_path, str) and knowledge_base_path.strip() else None),
+            database_uri=(database_uri.strip() if isinstance(database_uri, str) and database_uri.strip() else None),
         )
 
         self.uow.call_centers.add(cc)
@@ -83,8 +89,19 @@ class AuthService:
         if not _EMAIL_RE.match(email):
             raise ValidationError("Invalid email")
 
-        if self.uow.clients.get_by_email(email):
-            raise AlreadyExists("Email already exists")
+        # Uniqueness is now scoped to a single call center: the same person can
+        # have separate accounts at different call centers using the same
+        # username/email.
+        existing = (
+            self.uow.session.query(Client)
+            .filter(
+                Client.call_center_id == call_center_id,
+                (Client.email == email) | (Client.username == username.strip()),
+            )
+            .one_or_none()
+        )
+        if existing:
+            raise AlreadyExists("An account with this email or username already exists for this call center")
 
         client = Client(
             call_center_id=call_center_id,
@@ -103,13 +120,23 @@ class AuthService:
 
         return client
 
-    def login(self, *, username_or_email, password):
+    def login(self, *, username_or_email, password, call_center_id=None):
+        """
+        Returns one of:
+          { "kind": "token", "access_token": ..., "actor_type": ..., "actor_id": ..., "call_center_id": ... }
+          { "kind": "select_call_center", "candidates": [ {client_id, call_center_id, call_center_name}, ... ] }
 
+        Raises NotAllowed for invalid credentials.
+        """
+        identifier = (username_or_email or "").strip()
+        identifier_lower = identifier.lower()
+
+        # 1) Call-center accounts (single tenant, no ambiguity).
         cc = (
             self.uow.session.query(CallCenters)
             .filter(
-                (CallCenters.email == username_or_email.lower()) |
-                (CallCenters.username == username_or_email)
+                (CallCenters.email == identifier_lower) |
+                (CallCenters.username == identifier)
             )
             .one_or_none()
         )
@@ -117,28 +144,74 @@ class AuthService:
         if cc and verify_password(password, cc.password):
             token = create_access_token(
                 subject=str(cc.call_center_id),
-                claims={"actor_type": "call_center", "actor_id": cc.call_center_id}
+                claims={"actor_type": "call_center", "actor_id": cc.call_center_id},
             )
-            return token
+            return {
+                "kind": "token",
+                "access_token": token,
+                "actor_type": "call_center",
+                "actor_id": cc.call_center_id,
+                "call_center_id": None,
+            }
 
-        cl = (
+        # 2) Client accounts: a single (username|email) may match multiple rows
+        #    across different call centers. Filter by password validity.
+        candidates = (
             self.uow.session.query(Client)
             .filter(
-                (Client.email == username_or_email.lower()) |
-                (Client.username == username_or_email)
+                (Client.email == identifier_lower) |
+                (Client.username == identifier)
             )
-            .one_or_none()
+            .all()
         )
+        verified = [c for c in candidates if verify_password(password, c.password)]
 
-        if cl and verify_password(password, cl.password):
+        if not verified:
+            raise NotAllowed("Invalid credentials")
+
+        if call_center_id is not None:
+            verified = [c for c in verified if c.call_center_id == int(call_center_id)]
+            if not verified:
+                raise NotAllowed("Invalid credentials for the selected call center")
+
+        if len(verified) == 1:
+            cl = verified[0]
             token = create_access_token(
                 subject=str(cl.client_id),
-                claims={"actor_type": "client", "actor_id": cl.client_id, "call_center_id": cl.call_center_id}
+                claims={
+                    "actor_type": "client",
+                    "actor_id": cl.client_id,
+                    "call_center_id": cl.call_center_id,
+                },
             )
+            return {
+                "kind": "token",
+                "access_token": token,
+                "actor_type": "client",
+                "actor_id": cl.client_id,
+                "call_center_id": cl.call_center_id,
+            }
 
-            return token
+        # Multiple call centers — let the user pick.
+        cc_ids = list({c.call_center_id for c in verified})
+        cc_rows = (
+            self.uow.session.query(CallCenters)
+            .filter(CallCenters.call_center_id.in_(cc_ids))
+            .all()
+        )
+        cc_map = {row.call_center_id: row for row in cc_rows}
 
-        raise NotAllowed("Invalid credentials")
+        return {
+            "kind": "select_call_center",
+            "candidates": [
+                {
+                    "client_id": c.client_id,
+                    "call_center_id": c.call_center_id,
+                    "call_center_name": cc_map[c.call_center_id].name if c.call_center_id in cc_map else "",
+                }
+                for c in verified
+            ],
+        }
 
 
     def logout(self, *, jti: str) -> None:

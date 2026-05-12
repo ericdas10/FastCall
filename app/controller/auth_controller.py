@@ -1,9 +1,10 @@
+from typing import Union
 from fastapi import APIRouter, Depends, HTTPException, status
 
 from app.persistence.unit_of_work import get_uow, UnitOfWork
 from app.service.auth_service import AuthService
 from app.service.exceptions import ValidationError, AlreadyExists, NotFound, NotAllowed
-from app.schemas.auth import RegisterCallCenterIn, RegisterClientIn, LoginIn, TokenOut
+from app.schemas.auth import RegisterCallCenterIn, RegisterClientIn, LoginIn, TokenOut, LoginMultiOut
 
 router = APIRouter(prefix="/auth", tags=["auth"])
 
@@ -17,6 +18,9 @@ def register_call_center(dto: RegisterCallCenterIn, uow: UnitOfWork = Depends(ge
             password=dto.password,
             email=dto.email,
             domain=dto.domain,
+            description=dto.description,
+            knowledge_base_path=dto.knowledge_base_path,
+            database_uri=dto.database_uri,
             country=dto.country,
             number=dto.number
         )
@@ -44,12 +48,12 @@ def register_client(dto: RegisterClientIn, uow: UnitOfWork = Depends(get_uow)):
     except (ValidationError, AlreadyExists) as e:
         raise HTTPException(status_code=400, detail=str(e))
 
-@router.post("/login", response_model=TokenOut)
+@router.post("/login", response_model=Union[TokenOut, LoginMultiOut])
 def login(dto: LoginIn, uow: UnitOfWork = Depends(get_uow)):
     svc = AuthService(uow)
     try:
-        token = svc.login(username_or_email=dto.username_or_email, password=dto.password)
-        return TokenOut(access_token=token, token_type="bearer")
+        result = svc.login(username_or_email=dto.username_or_email, password=dto.password, call_center_id=dto.call_center_id)
+        return result
     except NotAllowed as e:
         raise HTTPException(status_code=401, detail=str(e))
     except ValidationError as e:

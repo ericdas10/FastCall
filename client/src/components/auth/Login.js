@@ -21,11 +21,36 @@ const Login = () => {
     });
   };
 
+  const [candidates, setCandidates] = useState(null); // [{client_id, call_center_id, call_center_name}]
+
+  const finishLogin = (response) => {
+    const targetType = response?.actor_type || userType;
+    navigate(targetType === 'client' ? '/client' : '/call-center');
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await login({ ...formData, user_type: userType });
-      navigate(userType === 'client' ? '/client' : '/call-center');
+      const response = await login({ ...formData, user_type: userType });
+      if (response && response.kind === 'select_call_center') {
+        setCandidates(response.candidates || []);
+        return;
+      }
+      finishLogin(response);
+    } catch (error) {
+      console.error('Login failed:', error);
+    }
+  };
+
+  const handleSelectCallCenter = async (callCenterId) => {
+    try {
+      const response = await login({ ...formData, user_type: userType, call_center_id: callCenterId });
+      if (response && response.kind === 'select_call_center') {
+        setCandidates(response.candidates || []);
+        return;
+      }
+      setCandidates(null);
+      finishLogin(response);
     } catch (error) {
       console.error('Login failed:', error);
     }
@@ -45,6 +70,39 @@ const Login = () => {
           </div>
         )}
 
+        {candidates && candidates.length > 0 ? (
+          <div className="space-y-4">
+            <div>
+              <h2 className="text-lg font-semibold text-secondary-800">Select a call center</h2>
+              <p className="text-sm text-secondary-600">
+                You have accounts at multiple call centers. Choose which one to log in to.
+              </p>
+            </div>
+            <div className="space-y-2">
+              {candidates.map((c) => (
+                <button
+                  key={c.call_center_id}
+                  type="button"
+                  onClick={() => handleSelectCallCenter(c.call_center_id)}
+                  disabled={loading}
+                  className="w-full text-left p-4 rounded-lg border border-secondary-200 bg-white hover:bg-primary-50 hover:border-primary-300 transition disabled:opacity-50"
+                >
+                  <div className="font-medium text-secondary-800">
+                    {c.call_center_name || `Call center #${c.call_center_id}`}
+                  </div>
+                  <div className="text-xs text-secondary-500">ID: {c.call_center_id}</div>
+                </button>
+              ))}
+            </div>
+            <button
+              type="button"
+              onClick={() => setCandidates(null)}
+              className="text-sm text-secondary-500 hover:text-secondary-700"
+            >
+              ← Back
+            </button>
+          </div>
+        ) : (
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="flex space-x-4 mb-6">
             <button
@@ -134,6 +192,7 @@ const Login = () => {
             )}
           </button>
         </form>
+        )}
 
         <div className="mt-6 text-center">
           <p className="text-secondary-600">

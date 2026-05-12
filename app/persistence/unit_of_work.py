@@ -7,6 +7,7 @@ from app.persistence.repositories.client import ClientRepository
 from app.persistence.repositories.messages import MessagesRepository
 from app.persistence.exceptions import PersistenceError
 from app.persistence.repositories.revoked_tokens import RevokedTokensRepository
+from app.persistence.repositories.tickets import TicketsRepository
 
 
 class UnitOfWork:
@@ -16,6 +17,7 @@ class UnitOfWork:
         self.clients = ClientRepository(session)
         self.messages = MessagesRepository(session)
         self.revoked_tokens = RevokedTokensRepository(session)
+        self.tickets = TicketsRepository(session)
 
     def commit(self) -> None:
         try:
