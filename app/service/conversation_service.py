@@ -4,14 +4,16 @@ from typing import Dict, List, Tuple
 
 from app.persistence.unit_of_work import UnitOfWork
 from app.model.tickets.model import Ticket
-from app.rag.pipeline import get_rag_pipeline
+from app.agent.registry import get_operator
+from app.agent.memory import get_memory
+from app.agent.tools.faq_tool import FaqStore
+from app.agent.faq_extractor import extract_faq_from_ticket
 from .exceptions import NotFound, NotAllowed, ValidationError
 
 
 # In-process registry of OPEN conversations per client.
-# Maps client_id -> list of conversation_ids the client owns (and which still
-# have an active in-memory state in the RAG cache). The actual chat state lives
-# inside RagPipeline.cache.
+# Maps client_id -> list of conversation_ids the client owns. The actual chat
+# state (turns, summary, slots) lives inside the agent's AgentMemory cache.
 _open_conversations: Dict[int, List[str]] = {}
 
 
@@ -22,7 +24,7 @@ def _make_session_id() -> str:
 class ConversationService:
     def __init__(self, uow: UnitOfWork):
         self.uow = uow
-        self.rag = get_rag_pipeline()
+        self.memory = get_memory()
 
     # ---------- Client side ----------
 
@@ -36,7 +38,7 @@ class ConversationService:
         client = self._require_client(client_id)
         conv_id = _make_session_id()
         # Pre-create the in-memory state so it shows up immediately.
-        self.rag.get_state(client.call_center_id, conv_id)
+        self.memory.get(client.call_center_id, conv_id)
         _open_conversations.setdefault(client_id, []).append(conv_id)
         return conv_id
 
@@ -54,11 +56,9 @@ class ConversationService:
 
         call_center_id = self._ensure_open(client_id, conversation_id)
 
-        result = self.rag.answer(
-            call_center_id=call_center_id,
-            session_id=conversation_id,
-            question=text.strip(),
-        )
+        operator = get_operator(call_center_id)
+        state = self.memory.get(call_center_id, conversation_id)
+        result = operator.answer(state=state, question=text.strip())
         return {
             "answer": result["answer"],
             "conversation_finished": result["conversation_finished"],
@@ -68,7 +68,7 @@ class ConversationService:
         client = self._require_client(client_id)
         out = []
         for conv_id in list(_open_conversations.get(client_id, [])):
-            state = self.rag.get_state(client.call_center_id, conv_id)
+            state = self.memory.get(client.call_center_id, conv_id)
             turns = [
                 {"role": t.role, "content": t.content, "ts": t.ts}
                 for t in state.turns
@@ -86,7 +86,7 @@ class ConversationService:
 
     def get_open_conversation(self, *, client_id: int, conversation_id: str) -> dict:
         call_center_id = self._ensure_open(client_id, conversation_id)
-        state = self.rag.get_state(call_center_id, conversation_id)
+        state = self.memory.get(call_center_id, conversation_id)
         return {
             "conversation_id": conversation_id,
             "turns": [
@@ -104,7 +104,7 @@ class ConversationService:
         if conversation_id not in ids:
             raise NotFound("Conversation not found or already closed")
 
-        state = self.rag.get_state(client.call_center_id, conversation_id)
+        state = self.memory.get(client.call_center_id, conversation_id)
 
         payload = {
             "conversation_id": conversation_id,
@@ -133,8 +133,17 @@ class ConversationService:
         self.uow.tickets.flush()
         self.uow.commit()
 
+        # If the conversation was a success, mine generic Q/A into the FAQ.
+        if success:
+            try:
+                faq_store = FaqStore(call_center_id=client.call_center_id)
+                extract_faq_from_ticket(payload, faq_store)
+            except Exception:
+                # FAQ extraction is best-effort; never fail the close because of it.
+                pass
+
         # Clear in-memory state and registry entry
-        self.rag.reset_session(client.call_center_id, conversation_id)
+        self.memory.reset(client.call_center_id, conversation_id)
         ids.remove(conversation_id)
         if not ids:
             _open_conversations.pop(client_id, None)

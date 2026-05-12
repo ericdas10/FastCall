@@ -18,4 +18,7 @@ class Settings(BaseSettings):
     JWT_ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60
 
+    # OpenAI (used by the agentic RAG layer in app/agent)
+    OPENAI_API_KEY: str = ""
+
 settings = Settings()

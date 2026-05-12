@@ -4,27 +4,43 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dda70e5c-5eb7-43c3-a419-bace0b446e4b" name="Changes" comment="client done">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/db-forest-config.xml" afterDir="false" />
+    <list default="true" id="dda70e5c-5eb7-43c3-a419-bace0b446e4b" name="Changes" comment="modify interface and behavior">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/db-forest-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/db-forest-config.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controller/auth_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/controller/auth_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controller/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/controller/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controller/call_center_controller_fixed.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/controller/call_center_controller_fixed.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/model/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/model/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/model/call_centers/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/model/call_centers/model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/model/client/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/model/client/model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/persistence/unit_of_work.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/persistence/unit_of_work.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/rag/pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/rag/pipeline.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/schemas/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/schemas/auth.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/service/auth_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/service/auth_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controller/messaging_controller.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controller/pdf_upload.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/controller/pdf_upload.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/rag/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/rag/chunking.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/rag/config.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/rag/data/.gitkeep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/rag/data/cc_1/bm25.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/rag/data/cc_1/chunks.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/rag/data/cc_1/docs/AccountManagement.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/rag/data/cc_1/docs/StamatinIoan_CV .pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/rag/data/cc_1/docs/Vlad_Laura_CV.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/rag/data/cc_1/faiss.index" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/rag/data/cc_1/meta.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/rag/data/cc_8/bm25.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/rag/data/cc_8/chunks.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/rag/data/cc_8/docs/AGENTIC RETRIEVAL-AUGMENTED GENERATION A SURVEY ON AGENTIC RAG.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/rag/data/cc_8/docs/StamatinIoan_CV .pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/rag/data/cc_8/docs/Vlad_Laura_CV.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/rag/data/cc_8/faiss.index" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/rag/data/cc_8/meta.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/rag/index.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/rag/ingestion.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/rag/llm.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/rag/loaders.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/rag/memory_store.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/rag/pipeline.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/service/conversation_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/service/conversation_service.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/auth/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/auth/Login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/auth/Register.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/auth/Register.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/callcenter/CallCenterDashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/callcenter/CallCenterDashboard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/client/ClientDashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/client/ClientDashboard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/context/AuthContext.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/context/AuthContext.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/services/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/services/api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/service/messaging_service.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -145,11 +161,12 @@
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "D:/Licenta/app/rag/data/cc_1/docs",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
     "DatabaseDriversLRU": [
+      "sqlite",
       "postgresql"
     ]
   }
@@ -416,7 +433,8 @@
       <workItem from="1778579441480" duration="24000" />
       <workItem from="1778579478509" duration="27000" />
       <workItem from="1778579522366" duration="343000" />
-      <workItem from="1778579880229" duration="6114000" />
+      <workItem from="1778579880229" duration="7390000" />
+      <workItem from="1778594660445" duration="4587000" />
     </task>
     <task id="LOCAL-00001" summary="final login work + tests">
       <option name="closed" value="true" />
@@ -442,7 +460,15 @@
       <option name="project" value="LOCAL" />
       <updated>1772036862701</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="modify interface and behavior">
+      <option name="closed" value="true" />
+      <created>1778591950206</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1778591950206</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -463,12 +489,13 @@
     <MESSAGE value="final login work + tests" />
     <MESSAGE value="now work final" />
     <MESSAGE value="client done" />
-    <option name="LAST_COMMIT_MESSAGE" value="client done" />
+    <MESSAGE value="modify interface and behavior" />
+    <option name="LAST_COMMIT_MESSAGE" value="modify interface and behavior" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Licenta$test.coverage" NAME="test Coverage Results" MODIFIED="1769771958349" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Licenta$.coverage" NAME=" Coverage Results" MODIFIED="1769771179878" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Licenta$FastAPI__uvicorn_.coverage" NAME="FastAPI (uvicorn) Coverage Results" MODIFIED="1778590121992" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="D:\Licenta" />
+    <SUITE FILE_PATH="coverage/Licenta$FastAPI__uvicorn_.coverage" NAME="FastAPI (uvicorn) Coverage Results" MODIFIED="1778599490317" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="D:\Licenta" />
     <SUITE FILE_PATH="coverage/Licenta$main.coverage" NAME="main Coverage Results" MODIFIED="1771166903869" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app" />
     <SUITE FILE_PATH="coverage/Licenta$tests_run.coverage" NAME="tests run Coverage Results" MODIFIED="1771248652400" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Licenta$conftest.coverage" NAME="conftest Coverage Results" MODIFIED="1778576283495" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
