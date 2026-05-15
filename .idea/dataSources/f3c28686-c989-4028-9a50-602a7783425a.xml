@@ -3,7 +3,7 @@
   <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.54">
     <root id="1">
       <DateStyle>dmy</DateStyle>
-      <IntrospectionStateNumber>2054</IntrospectionStateNumber>
+      <IntrospectionStateNumber>2086</IntrospectionStateNumber>
       <ServerVersion>18.0</ServerVersion>
       <StartupTime>1778401979</StartupTime>
       <TimeZones>true ACDT
@@ -801,77 +801,77 @@ false Zulu
 14860||10|C|G
 14860||-9223372036854775808|U|G
 14860||10|U|G</Grants>
-      <IntrospectionStateNumber>2067</IntrospectionStateNumber>
+      <IntrospectionStateNumber>2086</IntrospectionStateNumber>
       <ObjectId>50990</ObjectId>
       <OwnerName>postgres</OwnerName>
     </database>
-    <database id="3" parent="1" name="postgres">
+    <database id="3" parent="1" name="FastCallTestDB">
+      <ObjectId>51045</ObjectId>
+      <OwnerName>postgres</OwnerName>
+    </database>
+    <database id="4" parent="1" name="movies_pdm">
+      <ObjectId>42779</ObjectId>
+      <OwnerName>postgres</OwnerName>
+    </database>
+    <database id="5" parent="1" name="postgres">
       <Comment>default administrative connection database</Comment>
       <ObjectId>5</ObjectId>
       <OwnerName>postgres</OwnerName>
     </database>
-    <database id="4" parent="1" name="wapp_clone">
+    <database id="6" parent="1" name="wapp_clone">
       <ObjectId>16384</ObjectId>
       <OwnerName>postgres</OwnerName>
     </database>
-    <database id="5" parent="1" name="movies_pdm">
-      <ObjectId>42779</ObjectId>
-      <OwnerName>postgres</OwnerName>
-    </database>
-    <database id="6" parent="1" name="FastCallTestDB">
-      <ObjectId>51045</ObjectId>
-      <OwnerName>postgres</OwnerName>
-    </database>
-    <role id="7" parent="1" name="pg_database_owner">
+    <role id="7" parent="1" name="pg_checkpoint">
+      <ObjectId>4544</ObjectId>
+    </role>
+    <role id="8" parent="1" name="pg_create_subscription">
+      <ObjectId>6304</ObjectId>
+    </role>
+    <role id="9" parent="1" name="pg_database_owner">
       <ObjectId>6171</ObjectId>
     </role>
-    <role id="8" parent="1" name="pg_read_all_data">
-      <ObjectId>6181</ObjectId>
+    <role id="10" parent="1" name="pg_execute_server_program">
+      <ObjectId>4571</ObjectId>
     </role>
-    <role id="9" parent="1" name="pg_write_all_data">
-      <ObjectId>6182</ObjectId>
+    <role id="11" parent="1" name="pg_maintain">
+      <ObjectId>6337</ObjectId>
     </role>
-    <role id="10" parent="1" name="pg_monitor">
+    <role id="12" parent="1" name="pg_monitor">
       <ObjectId>3373</ObjectId>
       <RoleGrants>3374
 3375
 3377</RoleGrants>
     </role>
-    <role id="11" parent="1" name="pg_read_all_settings">
+    <role id="13" parent="1" name="pg_read_all_data">
+      <ObjectId>6181</ObjectId>
+    </role>
+    <role id="14" parent="1" name="pg_read_all_settings">
       <ObjectId>3374</ObjectId>
     </role>
-    <role id="12" parent="1" name="pg_read_all_stats">
+    <role id="15" parent="1" name="pg_read_all_stats">
       <ObjectId>3375</ObjectId>
     </role>
-    <role id="13" parent="1" name="pg_stat_scan_tables">
-      <ObjectId>3377</ObjectId>
-    </role>
-    <role id="14" parent="1" name="pg_read_server_files">
+    <role id="16" parent="1" name="pg_read_server_files">
       <ObjectId>4569</ObjectId>
     </role>
-    <role id="15" parent="1" name="pg_write_server_files">
-      <ObjectId>4570</ObjectId>
+    <role id="17" parent="1" name="pg_signal_autovacuum_worker">
+      <ObjectId>6392</ObjectId>
     </role>
-    <role id="16" parent="1" name="pg_execute_server_program">
-      <ObjectId>4571</ObjectId>
-    </role>
-    <role id="17" parent="1" name="pg_signal_backend">
+    <role id="18" parent="1" name="pg_signal_backend">
       <ObjectId>4200</ObjectId>
     </role>
-    <role id="18" parent="1" name="pg_checkpoint">
-      <ObjectId>4544</ObjectId>
-    </role>
-    <role id="19" parent="1" name="pg_maintain">
-      <ObjectId>6337</ObjectId>
+    <role id="19" parent="1" name="pg_stat_scan_tables">
+      <ObjectId>3377</ObjectId>
     </role>
     <role id="20" parent="1" name="pg_use_reserved_connections">
       <ObjectId>4550</ObjectId>
     </role>
-    <role id="21" parent="1" name="pg_create_subscription">
-      <ObjectId>6304</ObjectId>
+    <role id="21" parent="1" name="pg_write_all_data">
+      <ObjectId>6182</ObjectId>
     </role>
-    <role id="22" parent="1" name="pg_signal_autovacuum_worker">
-      <ObjectId>6392</ObjectId>
+    <role id="22" parent="1" name="pg_write_server_files">
+      <ObjectId>4570</ObjectId>
     </role>
     <role id="23" parent="1" name="postgres">
       <BypassRls>1</BypassRls>
@@ -907,11 +907,11 @@ false Zulu
       <AutoIntrospectionLevel>3</AutoIntrospectionLevel>
       <Comment>standard public schema</Comment>
       <Current>1</Current>
-      <LastIntrospectionL1Xid>2054</LastIntrospectionL1Xid>
-      <LastIntrospectionL2Xid>2054</LastIntrospectionL2Xid>
-      <LastIntrospectionL3Xid>2054</LastIntrospectionL3Xid>
+      <LastIntrospectionL1Xid>2086</LastIntrospectionL1Xid>
+      <LastIntrospectionL2Xid>2086</LastIntrospectionL2Xid>
+      <LastIntrospectionL3Xid>2086</LastIntrospectionL3Xid>
       <LastIntrospectionLevel>3</LastIntrospectionLevel>
-      <LastIntrospectionLocalTimestamp>2026-05-12.08:54:06</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2026-05-12.16:04:32</LastIntrospectionLocalTimestamp>
       <ObjectId>2200</ObjectId>
       <StateNumber>546</StateNumber>
       <OwnerName>pg_database_owner</OwnerName>
@@ -952,35 +952,51 @@ false Zulu
       <StoredType>integer|0s</StoredType>
       <OwnerName>postgres</OwnerName>
     </sequence>
-    <table id="33" parent="28" name="call_centers">
+    <sequence id="33" parent="28" name="tickets_ticket_id_seq">
+      <DetailsLevel>2</DetailsLevel>
+      <ObjectId>59640</ObjectId>
+      <SequenceIdentity>1</SequenceIdentity>
+      <StartValue>1</StartValue>
+      <StateNumber>2056</StateNumber>
+      <StoredType>integer|0s</StoredType>
+      <OwnerName>postgres</OwnerName>
+    </sequence>
+    <table id="34" parent="28" name="call_centers">
       <DetailsLevel>2</DetailsLevel>
       <ObjectId>50992</ObjectId>
       <StateNumber>2066</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <table id="34" parent="28" name="client">
+    <table id="35" parent="28" name="client">
       <DetailsLevel>2</DetailsLevel>
       <ObjectId>51009</ObjectId>
       <StateNumber>1847</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <table id="35" parent="28" name="messages">
+    <table id="36" parent="28" name="messages">
       <DetailsLevel>2</DetailsLevel>
       <ObjectId>51031</ObjectId>
       <StateNumber>1849</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <table id="36" parent="28" name="revoked_tokens">
+    <table id="37" parent="28" name="revoked_tokens">
       <DetailsLevel>2</DetailsLevel>
       <ObjectId>51449</ObjectId>
       <StateNumber>1941</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <column id="37" parent="33" name="call_center_id">
+    <table id="38" parent="28" name="tickets">
+      <DetailsLevel>2</DetailsLevel>
+      <ObjectId>59641</ObjectId>
+      <StateNumber>2056</StateNumber>
+      <AccessMethodId>2</AccessMethodId>
+      <OwnerName>postgres</OwnerName>
+    </table>
+    <column id="39" parent="34" name="call_center_id">
       <DefaultExpression>nextval(&apos;call_centers_call_center_id_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -989,74 +1005,74 @@ false Zulu
       <SequenceId>50991</SequenceId>
       <TypeId>23</TypeId>
     </column>
-    <column id="38" parent="33" name="name">
+    <column id="40" parent="34" name="name">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>1846</StateNumber>
       <StoredType>varchar(100)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="39" parent="33" name="username">
+    <column id="41" parent="34" name="username">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StateNumber>1846</StateNumber>
       <StoredType>varchar(100)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="40" parent="33" name="password">
+    <column id="42" parent="34" name="password">
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StateNumber>1846</StateNumber>
       <StoredType>varchar(100)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="41" parent="33" name="email">
+    <column id="43" parent="34" name="email">
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StateNumber>1846</StateNumber>
       <StoredType>varchar(100)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="42" parent="33" name="domain">
+    <column id="44" parent="34" name="domain">
       <NotNull>1</NotNull>
       <Position>6</Position>
       <StateNumber>1846</StateNumber>
       <StoredType>varchar(100)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="43" parent="33" name="country">
+    <column id="45" parent="34" name="country">
       <NotNull>1</NotNull>
       <Position>7</Position>
       <StateNumber>1846</StateNumber>
       <StoredType>varchar(100)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="44" parent="33" name="number">
+    <column id="46" parent="34" name="number">
       <NotNull>1</NotNull>
       <Position>8</Position>
       <StateNumber>1846</StateNumber>
       <StoredType>varchar(100)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="45" parent="33" name="description">
+    <column id="47" parent="34" name="description">
       <Position>9</Position>
       <StateNumber>2064</StateNumber>
       <StoredType>text|0s</StoredType>
       <TypeId>25</TypeId>
     </column>
-    <column id="46" parent="33" name="knowledge_base_path">
+    <column id="48" parent="34" name="knowledge_base_path">
       <Position>10</Position>
       <StateNumber>2065</StateNumber>
       <StoredType>varchar(500)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="47" parent="33" name="database_uri">
+    <column id="49" parent="34" name="database_uri">
       <Position>11</Position>
       <StateNumber>2066</StateNumber>
       <StoredType>varchar(500)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <index id="48" parent="33" name="call_centers_pkey">
+    <index id="50" parent="34" name="call_centers_pkey">
       <ColNames>call_center_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>51006</ObjectId>
@@ -1065,14 +1081,14 @@ false Zulu
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="49" parent="33" name="call_centers_pkey">
+    <key id="51" parent="34" name="call_centers_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>51007</ObjectId>
       <Primary>1</Primary>
       <StateNumber>1846</StateNumber>
       <UnderlyingIndexId>51006</UnderlyingIndexId>
     </key>
-    <column id="50" parent="34" name="client_id">
+    <column id="52" parent="35" name="client_id">
       <DefaultExpression>nextval(&apos;client_client_id_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1081,62 +1097,62 @@ false Zulu
       <SequenceId>51008</SequenceId>
       <TypeId>23</TypeId>
     </column>
-    <column id="51" parent="34" name="call_center_id">
+    <column id="53" parent="35" name="call_center_id">
       <Position>2</Position>
       <StateNumber>1847</StateNumber>
       <StoredType>integer|0s</StoredType>
       <TypeId>23</TypeId>
     </column>
-    <column id="52" parent="34" name="first_name">
+    <column id="54" parent="35" name="first_name">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StateNumber>1847</StateNumber>
       <StoredType>varchar(100)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="53" parent="34" name="last_name">
+    <column id="55" parent="35" name="last_name">
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StateNumber>1847</StateNumber>
       <StoredType>varchar(100)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="54" parent="34" name="username">
+    <column id="56" parent="35" name="username">
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StateNumber>1847</StateNumber>
       <StoredType>varchar(100)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="55" parent="34" name="password">
+    <column id="57" parent="35" name="password">
       <NotNull>1</NotNull>
       <Position>6</Position>
       <StateNumber>1847</StateNumber>
       <StoredType>varchar(100)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="56" parent="34" name="email">
+    <column id="58" parent="35" name="email">
       <NotNull>1</NotNull>
       <Position>7</Position>
       <StateNumber>1847</StateNumber>
       <StoredType>varchar(100)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="57" parent="34" name="country">
+    <column id="59" parent="35" name="country">
       <NotNull>1</NotNull>
       <Position>8</Position>
       <StateNumber>1847</StateNumber>
       <StoredType>varchar(100)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="58" parent="34" name="number">
+    <column id="60" parent="35" name="number">
       <NotNull>1</NotNull>
       <Position>9</Position>
       <StateNumber>1847</StateNumber>
       <StoredType>varchar(100)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <foreign-key id="59" parent="34" name="client_call_center_id_fkey">
+    <foreign-key id="61" parent="35" name="client_call_center_id_fkey">
       <ColNames>call_center_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>51025</ObjectId>
@@ -1144,7 +1160,7 @@ false Zulu
       <RefKeyColPositions>1</RefKeyColPositions>
       <RefTableId>50992</RefTableId>
     </foreign-key>
-    <index id="60" parent="34" name="client_pkey">
+    <index id="62" parent="35" name="client_pkey">
       <ColNames>client_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>51023</ObjectId>
@@ -1153,14 +1169,14 @@ false Zulu
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="61" parent="34" name="client_pkey">
+    <key id="63" parent="35" name="client_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>51024</ObjectId>
       <Primary>1</Primary>
       <StateNumber>1847</StateNumber>
       <UnderlyingIndexId>51023</UnderlyingIndexId>
     </key>
-    <column id="62" parent="35" name="message_id">
+    <column id="64" parent="36" name="message_id">
       <DefaultExpression>nextval(&apos;messages_message_id_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1169,32 +1185,32 @@ false Zulu
       <SequenceId>51030</SequenceId>
       <TypeId>23</TypeId>
     </column>
-    <column id="63" parent="35" name="client_id">
+    <column id="65" parent="36" name="client_id">
       <Position>2</Position>
       <StateNumber>1848</StateNumber>
       <StoredType>integer|0s</StoredType>
       <TypeId>23</TypeId>
     </column>
-    <column id="64" parent="35" name="text_message">
+    <column id="66" parent="36" name="text_message">
       <Position>3</Position>
       <StateNumber>1848</StateNumber>
       <StoredType>varchar(10000)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="65" parent="35" name="response">
+    <column id="67" parent="36" name="response">
       <Position>4</Position>
       <StateNumber>1848</StateNumber>
       <StoredType>varchar(10000)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <foreign-key id="66" parent="35" name="fk_clients_messages">
+    <foreign-key id="68" parent="36" name="fk_clients_messages">
       <ColNames>client_id</ColNames>
       <ObjectId>51040</ObjectId>
       <StateNumber>1849</StateNumber>
       <RefKeyColPositions>1</RefKeyColPositions>
       <RefTableId>51009</RefTableId>
     </foreign-key>
-    <index id="67" parent="35" name="messages_pkey">
+    <index id="69" parent="36" name="messages_pkey">
       <ColNames>message_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>51038</ObjectId>
@@ -1203,14 +1219,14 @@ false Zulu
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="68" parent="35" name="messages_pkey">
+    <key id="70" parent="36" name="messages_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>51039</ObjectId>
       <Primary>1</Primary>
       <StateNumber>1848</StateNumber>
       <UnderlyingIndexId>51038</UnderlyingIndexId>
     </key>
-    <column id="69" parent="36" name="id">
+    <column id="71" parent="37" name="id">
       <DefaultExpression>nextval(&apos;revoked_tokens_id_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1219,21 +1235,21 @@ false Zulu
       <SequenceId>51448</SequenceId>
       <TypeId>23</TypeId>
     </column>
-    <column id="70" parent="36" name="jti">
+    <column id="72" parent="37" name="jti">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>1941</StateNumber>
       <StoredType>varchar(128)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="71" parent="36" name="revoked_at">
+    <column id="73" parent="37" name="revoked_at">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StateNumber>1941</StateNumber>
       <StoredType>timestamp|0s</StoredType>
       <TypeId>1114</TypeId>
     </column>
-    <index id="72" parent="36" name="revoked_tokens_pkey">
+    <index id="74" parent="37" name="revoked_tokens_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>51456</ObjectId>
@@ -1242,7 +1258,7 @@ false Zulu
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <index id="73" parent="36" name="revoked_tokens_jti_key">
+    <index id="75" parent="37" name="revoked_tokens_jti_key">
       <ColNames>jti</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>51458</ObjectId>
@@ -1253,7 +1269,7 @@ false Zulu
       <CollationIds>100</CollationIds>
       <CollationParentNames>pg_catalog</CollationParentNames>
     </index>
-    <index id="74" parent="36" name="ix_revoked_tokens_jti">
+    <index id="76" parent="37" name="ix_revoked_tokens_jti">
       <ColNames>jti</ColNames>
       <ObjectId>51460</ObjectId>
       <StateNumber>1941</StateNumber>
@@ -1262,18 +1278,121 @@ false Zulu
       <CollationIds>100</CollationIds>
       <CollationParentNames>pg_catalog</CollationParentNames>
     </index>
-    <key id="75" parent="36" name="revoked_tokens_pkey">
+    <key id="77" parent="37" name="revoked_tokens_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>51457</ObjectId>
       <Primary>1</Primary>
       <StateNumber>1941</StateNumber>
       <UnderlyingIndexId>51456</UnderlyingIndexId>
     </key>
-    <key id="76" parent="36" name="revoked_tokens_jti_key">
+    <key id="78" parent="37" name="revoked_tokens_jti_key">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>51459</ObjectId>
       <StateNumber>1941</StateNumber>
       <UnderlyingIndexId>51458</UnderlyingIndexId>
+    </key>
+    <column id="79" parent="38" name="ticket_id">
+      <DefaultExpression>nextval(&apos;tickets_ticket_id_seq&apos;::regclass)</DefaultExpression>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StateNumber>2056</StateNumber>
+      <StoredType>integer|0s</StoredType>
+      <SequenceId>59640</SequenceId>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="80" parent="38" name="client_id">
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StateNumber>2056</StateNumber>
+      <StoredType>integer|0s</StoredType>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="81" parent="38" name="call_center_id">
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StateNumber>2056</StateNumber>
+      <StoredType>integer|0s</StoredType>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="82" parent="38" name="status">
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+      <StateNumber>2056</StateNumber>
+      <StoredType>varchar(20)|0s</StoredType>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="83" parent="38" name="payload">
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+      <StateNumber>2056</StateNumber>
+      <StoredType>json|0s</StoredType>
+      <TypeId>114</TypeId>
+    </column>
+    <column id="84" parent="38" name="summary">
+      <Position>6</Position>
+      <StateNumber>2056</StateNumber>
+      <StoredType>text|0s</StoredType>
+      <TypeId>25</TypeId>
+    </column>
+    <column id="85" parent="38" name="created_at">
+      <NotNull>1</NotNull>
+      <Position>7</Position>
+      <StateNumber>2056</StateNumber>
+      <StoredType>timestamp|0s</StoredType>
+      <TypeId>1114</TypeId>
+    </column>
+    <column id="86" parent="38" name="closed_at">
+      <NotNull>1</NotNull>
+      <Position>8</Position>
+      <StateNumber>2056</StateNumber>
+      <StoredType>timestamp|0s</StoredType>
+      <TypeId>1114</TypeId>
+    </column>
+    <foreign-key id="87" parent="38" name="tickets_client_id_fkey">
+      <ColNames>client_id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>59656</ObjectId>
+      <OnDelete>cascade</OnDelete>
+      <StateNumber>2056</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefTableId>51009</RefTableId>
+    </foreign-key>
+    <foreign-key id="88" parent="38" name="tickets_call_center_id_fkey">
+      <ColNames>call_center_id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>59661</ObjectId>
+      <OnDelete>cascade</OnDelete>
+      <StateNumber>2056</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefTableId>50992</RefTableId>
+    </foreign-key>
+    <index id="89" parent="38" name="tickets_pkey">
+      <ColNames>ticket_id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>59654</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>2056</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+    </index>
+    <index id="90" parent="38" name="ix_tickets_client_id">
+      <ColNames>client_id</ColNames>
+      <ObjectId>59666</ObjectId>
+      <StateNumber>2056</StateNumber>
+      <AccessMethodId>403</AccessMethodId>
+    </index>
+    <index id="91" parent="38" name="ix_tickets_call_center_id">
+      <ColNames>call_center_id</ColNames>
+      <ObjectId>59667</ObjectId>
+      <StateNumber>2056</StateNumber>
+      <AccessMethodId>403</AccessMethodId>
+    </index>
+    <key id="92" parent="38" name="tickets_pkey">
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>59655</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>2056</StateNumber>
+      <UnderlyingIndexId>59654</UnderlyingIndexId>
     </key>
   </database-model>
 </dataSource>

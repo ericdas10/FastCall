@@ -11,7 +11,9 @@ import {
   CheckCircleIcon,
   XCircleIcon,
   TicketIcon,
+  PhoneIcon,
 } from '@heroicons/react/24/outline';
+import VoiceCallOverlay from './VoiceCallOverlay';
 
 const ClientDashboard = () => {
   const [openConversations, setOpenConversations] = useState([]); // [{conversation_id, turns, preview}]
@@ -26,6 +28,7 @@ const ClientDashboard = () => {
   const [loadingList, setLoadingList] = useState(false);
   const [showCloseModal, setShowCloseModal] = useState(false);
   const [closeSuggestedByAI, setCloseSuggestedByAI] = useState(false);
+  const [callOpen, setCallOpen] = useState(false);
 
   const messagesEndRef = useRef(null);
   const { user, logout } = useAuth();
@@ -139,6 +142,53 @@ const ClientDashboard = () => {
 
   const handleEndConversation = () => {
     setCloseSuggestedByAI(false);
+    setShowCloseModal(true);
+  };
+
+  // ---- Voice call ----
+
+  const ensureActiveConversation = async () => {
+    if (activeId && !activeIsTicket) return activeId;
+    const conv = await conversationAPI.create();
+    const newConv = { conversation_id: conv.conversation_id, turns: [], preview: '' };
+    setOpenConversations((prev) => [newConv, ...prev]);
+    selectOpen(newConv);
+    return conv.conversation_id;
+  };
+
+  const handleStartCall = async () => {
+    try {
+      await ensureActiveConversation();
+      setCallOpen(true);
+    } catch (e) {
+      console.error('Failed to start voice call:', e);
+    }
+  };
+
+  // Used by VoiceCallOverlay to forward each transcribed utterance through
+  // the same backend pipeline as the chat input. Mirrors `handleSendMessage`
+  // but returns the raw { answer, conversation_finished } payload.
+  const voiceSendMessage = async (text) => {
+    if (!activeId || activeIsTicket) {
+      throw new Error('No active conversation for voice call.');
+    }
+    const userTurn = { role: 'user', content: text, ts: Date.now() / 1000 };
+    setActiveTurns((prev) => [...prev, userTurn]);
+    updateOpenConv(activeId, (c) => ({
+      turns: [...(c.turns || []), userTurn],
+      preview: c.preview || text,
+    }));
+
+    const res = await conversationAPI.sendMessage(activeId, text);
+    const aiTurn = { role: 'assistant', content: res.answer, ts: Date.now() / 1000 };
+    setActiveTurns((prev) => [...prev, aiTurn]);
+    updateOpenConv(activeId, (c) => ({ turns: [...(c.turns || []), aiTurn] }));
+    return res; // { answer, conversation_finished }
+  };
+
+  const handleCallClosed = ({ suggestedByAgent }) => {
+    setCallOpen(false);
+    setCloseSuggestedByAI(Boolean(suggestedByAgent));
     setShowCloseModal(true);
   };
 
@@ -298,13 +348,23 @@ const ClientDashboard = () => {
                     </h3>
                   </div>
                   {!activeIsTicket && (
-                    <button
-                      onClick={handleEndConversation}
-                      className="btn-secondary flex items-center space-x-2"
-                    >
-                      <XMarkIcon className="h-5 w-5" />
-                      <span>End conversation</span>
-                    </button>
+                    <div className="flex items-center space-x-2">
+                      <button
+                        onClick={handleStartCall}
+                        className="btn-primary flex items-center space-x-2"
+                        title="Call the operator"
+                      >
+                        <PhoneIcon className="h-5 w-5" />
+                        <span>Call</span>
+                      </button>
+                      <button
+                        onClick={handleEndConversation}
+                        className="btn-secondary flex items-center space-x-2"
+                      >
+                        <XMarkIcon className="h-5 w-5" />
+                        <span>End conversation</span>
+                      </button>
+                    </div>
                   )}
                 </div>
 
@@ -375,6 +435,14 @@ const ClientDashboard = () => {
           </div>
         </div>
       </div>
+
+      {/* Voice call overlay */}
+      {callOpen && (
+        <VoiceCallOverlay
+          sendMessage={voiceSendMessage}
+          onClose={handleCallClosed}
+        />
+      )}
 
       {/* Close confirmation modal */}
       {showCloseModal && (

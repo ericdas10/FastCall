@@ -37,7 +37,13 @@ class Operator:
 
     # ---------- public API ----------
 
-    def answer(self, *, state: AgentState, question: str) -> Dict:
+    def answer(
+        self,
+        *,
+        state: AgentState,
+        question: str,
+        customer: Optional[Dict] = None,
+    ) -> Dict:
         """
         Process a single user message. Returns:
             { "answer": str, "conversation_finished": bool, "source": str }
@@ -45,6 +51,11 @@ class Operator:
         ``source`` is one of: ``faq``, ``kb``, ``db``, ``llm`` (for plain
         chat answers). It is appended to ``state.slots["turn_sources"]``
         so that the FAQ extractor can later filter out DB-sourced turns.
+
+        ``customer`` is the authenticated client's identity (first_name,
+        last_name, email, client_id). It is injected per-turn into the model's
+        context so the LLM can use the right values in ``run_sql_select``
+        for account-specific questions.
         """
         question = (question or "").strip()
         if not question:
@@ -74,7 +85,9 @@ class Operator:
             }
 
         # Tool-using LLM path
-        answer, sources_used = self._run_with_tools(state=state, question=question)
+        answer, sources_used = self._run_with_tools(
+            state=state, question=question, customer=customer
+        )
 
         if not answer:
             answer = agent_settings.fallback_message
@@ -91,10 +104,41 @@ class Operator:
 
     # ---------- internals ----------
 
-    def _run_with_tools(self, *, state: AgentState, question: str) -> tuple[str, Set[str]]:
+    def _run_with_tools(
+        self,
+        *,
+        state: AgentState,
+        question: str,
+        customer: Optional[Dict] = None,
+    ) -> tuple[str, Set[str]]:
         messages: List[Dict] = [
             {"role": "system", "content": self.ctx.system_prompt}
         ]
+
+        # Per-turn identity injection: the authenticated customer is *not*
+        # stored in AgentState (which is keyed by conversation, not by user)
+        # but the LLM needs these exact values to build correct SQL for
+        # account-specific questions.
+        if customer:
+            first = (customer.get("first_name") or "").strip()
+            last = (customer.get("last_name") or "").strip()
+            email = (customer.get("email") or "").strip()
+            cid = customer.get("client_id")
+            messages.append(
+                {
+                    "role": "system",
+                    "content": (
+                        "AUTHENTICATED CUSTOMER (use these exact values in "
+                        "run_sql_select for any account-specific question; "
+                        "never ask the user for their name or email \u2014 you "
+                        "already have them):\n"
+                        f"- first_name: {first!r}\n"
+                        f"- last_name: {last!r}\n"
+                        f"- email: {email!r}\n"
+                        f"- client_id: {cid!r}"
+                    ),
+                }
+            )
 
         # Recent conversation context (last N turns; the just-added user turn
         # at the end IS the current question).

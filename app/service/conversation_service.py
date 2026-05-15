@@ -55,10 +55,17 @@ class ConversationService:
             raise ValidationError("Message cannot be empty")
 
         call_center_id = self._ensure_open(client_id, conversation_id)
+        client = self._require_client(client_id)
 
         operator = get_operator(call_center_id)
         state = self.memory.get(call_center_id, conversation_id)
-        result = operator.answer(state=state, question=text.strip())
+        customer = {
+            "client_id": client.client_id,
+            "first_name": client.first_name,
+            "last_name": client.last_name,
+            "email": client.email,
+        }
+        result = operator.answer(state=state, question=text.strip(), customer=customer)
         return {
             "answer": result["answer"],
             "conversation_finished": result["conversation_finished"],
