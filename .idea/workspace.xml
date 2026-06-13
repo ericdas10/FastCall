@@ -4,21 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dda70e5c-5eb7-43c3-a419-bace0b446e4b" name="Changes" comment="modify interface and behavior">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/f3c28686-c989-4028-9a50-602a7783425a.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/f3c28686-c989-4028-9a50-602a7783425a.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/f3c28686-c989-4028-9a50-602a7783425a/storage_v2/_src_/database/FastCallDB.-E5bFA/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/f3c28686-c989-4028-9a50-602a7783425a/storage_v2/_src_/database/FastCallDB.-E5bFA/schema/public.abK9xQ.meta" afterDir="false" />
+    <list default="true" id="dda70e5c-5eb7-43c3-a419-bace0b446e4b" name="Changes" comment="bug fixes + call solved">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/agent/coordinator.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/agent/coordinator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/agent/operator.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/agent/operator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/service/conversation_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/service/conversation_service.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/client/ClientDashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/client/ClientDashboard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/cc_8/chroma/1bd7c83e-c634-429a-b9bd-33db55a09f07/data_level0.bin" beforeDir="false" afterPath="$PROJECT_DIR$/data/cc_8/chroma/1bd7c83e-c634-429a-b9bd-33db55a09f07/data_level0.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/cc_8/chroma/1bd7c83e-c634-429a-b9bd-33db55a09f07/header.bin" beforeDir="false" afterPath="$PROJECT_DIR$/data/cc_8/chroma/1bd7c83e-c634-429a-b9bd-33db55a09f07/header.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/cc_8/chroma/1bd7c83e-c634-429a-b9bd-33db55a09f07/length.bin" beforeDir="false" afterPath="$PROJECT_DIR$/data/cc_8/chroma/1bd7c83e-c634-429a-b9bd-33db55a09f07/length.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/cc_8/chroma/1bd7c83e-c634-429a-b9bd-33db55a09f07/link_lists.bin" beforeDir="false" afterPath="$PROJECT_DIR$/data/cc_8/chroma/1bd7c83e-c634-429a-b9bd-33db55a09f07/link_lists.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/cc_8/chroma/chroma.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/data/cc_8/chroma/chroma.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/cc_8/faq.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/cc_8/faq.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,7 +16,7 @@
   <component name="CopilotChats">
     <option name="panelChat">
       <chat>
-        <option name="activeSessionId" value="2fc88952-8455-4131-9aa3-3431cddf949e" />
+        <option name="activeSessionId" value="f1faea5b-7e3b-424c-9f8c-7caa3d3d2533" />
         <option name="sessions">
           <session>
             <option name="chatType" value="PANEL" />
@@ -354,8 +342,8 @@
       <item itemvalue="Python.test_enum" />
       <item itemvalue="Python.test_frontend_data" />
       <item itemvalue="Python.test_register" />
-      <item itemvalue="Python tests.pytest for tests.test_enhanced_rag.test_enhanced_interaction" />
       <item itemvalue="Python tests.tests run" />
+      <item itemvalue="Python tests.pytest for tests.test_enhanced_rag.test_enhanced_interaction" />
     </list>
     <recent_temporary>
       <list>
@@ -423,6 +411,12 @@
       <workItem from="1778594660445" duration="6988000" />
       <workItem from="1778602422175" duration="234000" />
       <workItem from="1778750994202" duration="4289000" />
+      <workItem from="1778843629453" duration="1279000" />
+      <workItem from="1778923135202" duration="5900000" />
+      <workItem from="1779008107614" duration="12000" />
+      <workItem from="1779257099800" duration="1816000" />
+      <workItem from="1779773097189" duration="756000" />
+      <workItem from="1781295669347" duration="1208000" />
     </task>
     <task id="LOCAL-00001" summary="final login work + tests">
       <option name="closed" value="true" />
@@ -464,7 +458,15 @@
       <option name="project" value="LOCAL" />
       <updated>1778600080751</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="bug fixes + call solved">
+      <option name="closed" value="true" />
+      <created>1778843653591</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1778843653591</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -486,12 +488,13 @@
     <MESSAGE value="now work final" />
     <MESSAGE value="client done" />
     <MESSAGE value="modify interface and behavior" />
-    <option name="LAST_COMMIT_MESSAGE" value="modify interface and behavior" />
+    <MESSAGE value="bug fixes + call solved" />
+    <option name="LAST_COMMIT_MESSAGE" value="bug fixes + call solved" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Licenta$test.coverage" NAME="test Coverage Results" MODIFIED="1769771958349" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Licenta$.coverage" NAME=" Coverage Results" MODIFIED="1769771179878" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Licenta$FastAPI__uvicorn_.coverage" NAME="FastAPI (uvicorn) Coverage Results" MODIFIED="1778754067973" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="D:\Licenta" />
+    <SUITE FILE_PATH="coverage/Licenta$FastAPI__uvicorn_.coverage" NAME="FastAPI (uvicorn) Coverage Results" MODIFIED="1779773117098" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="D:\Licenta" />
     <SUITE FILE_PATH="coverage/Licenta$main.coverage" NAME="main Coverage Results" MODIFIED="1771166903869" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app" />
     <SUITE FILE_PATH="coverage/Licenta$tests_run.coverage" NAME="tests run Coverage Results" MODIFIED="1771248652400" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Licenta$conftest.coverage" NAME="conftest Coverage Results" MODIFIED="1778576283495" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
